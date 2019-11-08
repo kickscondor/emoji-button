@@ -5,6 +5,7 @@ import { HIDE_VARIANT_POPUP } from './events';
 
 import { times } from './icons';
 
+const safeInnerHTML = require('safeinnerhtml');
 const CLASS_OVERLAY = 'emoji-picker__variant-overlay';
 const CLASS_POPUP = 'emoji-picker__variant-popup';
 const CLASS_CLOSE_BUTTON = 'emoji-picker__variant-popup-close-button';
@@ -37,7 +38,7 @@ export class VariantPopup {
     });
 
     const closeButton = createElement('button', CLASS_CLOSE_BUTTON);
-    closeButton.innerHTML = times;
+    safeInnerHTML(closeButton, times);
     closeButton.addEventListener('click', event => {
       event.stopPropagation();
       this.events.emit(HIDE_VARIANT_POPUP);

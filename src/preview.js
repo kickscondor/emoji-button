@@ -1,6 +1,7 @@
 import { SHOW_PREVIEW, HIDE_PREVIEW } from './events';
 import { createElement, getEmojiName } from './util';
 
+const safeInnerHTML = require('safeinnerhtml');
 const CLASS_PREVIEW = 'emoji-picker__preview';
 const CLASS_PREVIEW_EMOJI = 'emoji-picker__preview-emoji';
 const CLASS_PREVIEW_NAME = 'emoji-picker__preview-name';
@@ -26,8 +27,8 @@ export class EmojiPreview {
   }
 
   showPreview(emoji) {
-    this.emoji.innerHTML = emoji.e;
-    this.name.innerHTML = getEmojiName(emoji);
+    safeInnerHTML(this.emoji, emoji.e);
+    safeInnerHTML(this.name, getEmojiName(emoji));
   }
 
   hidePreview() {

@@ -7,6 +7,7 @@ import { i18n as defaultI18n } from './i18n';
 import * as icons from './icons';
 import { createElement } from './util';
 
+const safeInnerHTML = require('safeinnerhtml');
 const CLASS_ACTIVE_TAB = 'active';
 const CLASS_TABS_CONTAINER = 'emoji-picker__tabs-container';
 const CLASS_TABS = 'emoji-picker__tabs';
@@ -140,7 +141,7 @@ class Tab {
 
   render() {
     this.tab = createElement('li', CLASS_TAB);
-    this.tab.innerHTML = this.icon;
+    safeInnerHTML(this.tab, this.icon);
 
     this.tab.addEventListener('click', () => this.setActiveTab(this.index));
 
@@ -167,7 +168,7 @@ class TabBody {
     this.container = createElement('div', CLASS_TAB_BODY);
 
     const title = createElement('h2');
-    title.innerHTML = this.category;
+    safeInnerHTML(title, this.category);
 
     this.container.appendChild(title);
     this.container.appendChild(this.content);

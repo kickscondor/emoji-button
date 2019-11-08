@@ -2,6 +2,7 @@ import { EMOJI, HIDE_PREVIEW, SHOW_PREVIEW } from './events';
 import { save } from './recent';
 import { createElement } from './util';
 
+const safeInnerHTML = require('safeinnerhtml');
 const CLASS_EMOJI = 'emoji-picker__emoji';
 
 export class Emoji {
@@ -14,7 +15,7 @@ export class Emoji {
 
   render() {
     const emojiButton = createElement('button', CLASS_EMOJI);
-    emojiButton.innerHTML = this.emoji.e;
+    safeInnerHTML(emojiButton, this.emoji.e);
 
     emojiButton.addEventListener('click', () => this.onEmojiClick());
     emojiButton.addEventListener('mouseover', () => this.onEmojiHover());

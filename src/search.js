@@ -9,6 +9,7 @@ import {
 } from './events';
 import { createElement } from './util';
 
+const safeInnerHTML = require('safeinnerhtml');
 const CLASS_SEARCH_CONTAINER = 'emoji-picker__search-container';
 const CLASS_SEARCH_FIELD = 'emoji-picker__search';
 const CLASS_SEARCH_ICON = 'emoji-picker__search-icon';
@@ -30,7 +31,7 @@ export class Search {
     this.searchContainer.appendChild(this.searchField);
 
     const searchIcon = createElement('span', CLASS_SEARCH_ICON);
-    searchIcon.innerHTML = icons.search;
+    safeInnerHTML(searchIcon, icons.search);
     this.searchContainer.appendChild(searchIcon);
 
     setTimeout(() => this.searchField.focus());
@@ -92,11 +93,11 @@ class NotFoundMessage {
     const container = createElement('div', CLASS_NOT_FOUND);
 
     const iconContainer = createElement('div', CLASS_NOT_FOUND_ICON);
-    iconContainer.innerHTML = icons.frown;
+    safeInnerHTML(iconContainer, icons.frown);
     container.appendChild(iconContainer);
 
     const messageContainer = createElement('h2');
-    messageContainer.innerHTML = this.message;
+    safeInnerHTML(messageContainer, this.message);
     container.appendChild(messageContainer);
 
     return container;
