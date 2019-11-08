@@ -1,6 +1,6 @@
 {
   "name": "@kickscondor/emoji-button",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "description": "Vanilla JavaScript emoji picker",
   "keywords": [
     "emoji",
@@ -10,7 +10,6 @@
   "scripts": {
     "build": "rollup -c",
     "build:watch": "rollup -cw",
-    "prepublishOnly": "rollup -c",
     "test": "jest",
     "test:watch": "jest --watchAll",
     "lint": "eslint src/*.js",
